@@ -1,0 +1,17 @@
+<div class="custom-create-hr-form">
+  <form [formGroup]="hr" class="example-form">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input class="example-full-width" formControlName="name" matInput placeholder="Name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input class="example-full-width" formControlName="email" matInput placeholder="Email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Linkedin Profile URL</mat-label>
+      <input class="example-full-width" formControlName="linkedinProfileURL" matInput placeholder="Linkedin Profile URL" />
+    </mat-form-field>
+    <button (click)="createHr()" mat-raised-button color="primary">Create HR</button>
+  </form>
+</div>
