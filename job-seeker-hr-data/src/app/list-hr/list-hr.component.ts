@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HrService } from '../services/hr.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 export interface IHr {
   id: number;
@@ -7,25 +10,46 @@ export interface IHr {
   linkedinProfileURL: string;
 }
 
-const ELEMENT_DATA: IHr[] = [
-  {id: 1, name: 'HR 1', email: 'hr1@gmail.com', linkedinProfileURL: 'H'},
-  {id: 2, name: 'HR 2', email: 'hr2@gmail.com', linkedinProfileURL: 'He'},
-  {id: 3, name: 'HR 3', email: 'hr3@gmail.com', linkedinProfileURL: 'Li'},
-];
-
 @Component({
   selector: 'app-list-hr',
   templateUrl: './list-hr.component.html',
   styleUrls: ['./list-hr.component.scss']
 })
 export class ListHrComponent implements OnInit {
-
-  constructor() { }
+  dataSource: IHr;
+  constructor(
+    private hrData: HrService, 
+    private _snackBar: MatSnackBar,
+    private router: Router,
+    private route: ActivatedRoute  
+  ) { }
 
   ngOnInit() {
+    this.hrList();
   }
 
-  displayedColumns: string[] = ['id', 'name', 'email', 'linkedinProfileURL'];
-  dataSource = ELEMENT_DATA;
+  openSnackBar(message: string, duration: number = 3000) {
+    this._snackBar.open(message, '', { duration: duration });
+  }
+
+  displayedColumns: string[] = ['id', 'name', 'email', 'linkedinProfileURL', 'edit', 'delete'];
+  
+  hrList() {
+    this.hrData.getHr().subscribe(response => {
+      this.dataSource = response;
+    })
+  }
+
+  deleteHr(id: string) {
+    this.hrData.deleteHR(id).subscribe(data => {
+      console.log(data);
+      this.hrList();
+      this.openSnackBar(data)
+    })
+  }
+
+  editHr(id: string) {
+    this.router.navigateByUrl('/edit-hr/'+id);
+  }
 
 }

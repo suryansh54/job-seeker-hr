@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'create-hr',
     component: CreateHrComponent
+  }, 
+  {
+    path: 'edit-hr/:id',
+    component: CreateHrComponent
   }
 ];
 

@@ -12,6 +12,13 @@
       <mat-label>Linkedin Profile URL</mat-label>
       <input class="example-full-width" formControlName="linkedinProfileURL" matInput placeholder="Linkedin Profile URL" />
     </mat-form-field>
-    <button (click)="createHr()" mat-raised-button color="primary">Create HR</button>
+    <div class="action-buttons">
+      <ng-container *ngIf="isCreate == false">
+        <button mat-raised-button color="primary">Edit HR</button>
+      </ng-container>
+      <ng-container *ngIf="isCreate == true">
+        <button (click)="createHr()" mat-raised-button color="primary">Create HR</button>
+      </ng-container>
+    </div>
   </form>
 </div>

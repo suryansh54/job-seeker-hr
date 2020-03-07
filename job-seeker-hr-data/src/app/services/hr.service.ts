@@ -9,18 +9,20 @@ export class HrService {
   constructor() { }
 
   createHr(data: any) {
-    let previousData = localStorage.getItem('hr-data') || [];
-    let latestData = [previousData, data];
-    let hrData = localStorage.setItem('hr-data', JSON.stringify(latestData));
-    if (hrData != null) {
-      return of(hrData)
+    let previousData: Array<any> = JSON.parse(localStorage.getItem('hr-data')) || [];
+    if(previousData.length === 0) {
+      previousData.push(data);
+      localStorage.setItem('hr-data', JSON.stringify(previousData));
+      return of("HR created successfully");
     } else {
-      return of("HR saved successfully")
+      previousData.push(data);
+      localStorage.setItem('hr-data', JSON.stringify(previousData));
+      return of("HR created successfully");
     }
   }
 
   getHr() {
-    let hrData = localStorage.getItem('hr-data');
+    let hrData = JSON.parse(localStorage.getItem('hr-data'));
     if (hrData != null) {
       return of(hrData)
     } else {
@@ -28,25 +30,28 @@ export class HrService {
     }
   }
   
-  /*getHrByID(id: number) {
-    let hrData = localStorage.getItem('hr-data');
+  getHrByID(id: string) {
+    let hrData = JSON.parse(localStorage.getItem('hr-data'));
     if (hrData != null) {
-      hrData.filter((v, i) => {
+      let hrByID = hrData.filter((v, i) => {
         return v.id == id;
       })
+      return of(hrByID);
     } else {
       return of("No Data found")
     }
   }
 
-  removeHR(id: number) {
-    let hrData = localStorage.getItem('hr-data');
+  deleteHR(id: string) {
+    let hrData:Array<any> = JSON.parse(localStorage.getItem('hr-data'));
     if (hrData != null) {
-      hrData.filter((v, i) => {
+      let deletedHRData = hrData.filter((v, i) => {
         return v.id != id;
       })
+      localStorage.setItem('hr-data', JSON.stringify(deletedHRData));
+      return of("HR removed successfully!")
     } else {
       return of("Data removed")
     }
-  }*/
+  }
 }
