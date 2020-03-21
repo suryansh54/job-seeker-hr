@@ -14,10 +14,10 @@
     </mat-form-field>
     <div class="action-buttons">
       <ng-container *ngIf="isCreate == false">
-        <button mat-raised-button color="primary">Edit HR</button>
+        <button mat-raised-button color="primary" (click)="updateHr()" [disabled]="!hr.valid">Update HR</button>
       </ng-container>
       <ng-container *ngIf="isCreate == true">
-        <button (click)="createHr()" mat-raised-button color="primary">Create HR</button>
+        <button [disabled]="!hr.valid" (click)="createHr()" mat-raised-button color="primary">Create HR</button>
       </ng-container>
     </div>
   </form>

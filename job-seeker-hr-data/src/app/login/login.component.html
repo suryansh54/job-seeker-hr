@@ -1,0 +1,18 @@
+<div class="custom-create-hr-form">
+    <form [formGroup]="login" class="example-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input class="example-full-width" formControlName="email" matInput placeholder="Name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input class="example-full-width" type="password" formControlName="password" matInput placeholder="Email" />
+      </mat-form-field>
+      <div class="action-buttons">
+        <ng-container>
+          <button [disabled]="!login.valid" (click)="onLogin()" mat-raised-button color="primary">Login</button>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+  

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HrService } from '../services/hr.service'; 
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { Router ,ActivatedRoute } from '@angular/router'
@@ -39,8 +39,8 @@ export class CreateHrComponent implements OnInit {
   }
 
   hr: FormGroup = new FormGroup({
-    name:new FormControl(''),
-    email: new FormControl(''),
+    name:new FormControl('', [Validators.required]),
+    email: new FormControl('', Validators.required),
     linkedinProfileURL: new FormControl('')
   });
 
@@ -64,4 +64,12 @@ export class CreateHrComponent implements OnInit {
       this.hr.patchValue(data[0]);
     })
   }
+
+  updateHr() {
+    this.hrData.updateHR({...{id: this.hrID}, ...this.hr.value}).subscribe(data => {
+      this.router.navigateByUrl('/');
+      this.openSnackBar(data);
+    })
+  }
+
 }

@@ -22,13 +22,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateHrComponent,
-    ListHrComponent
+    ListHrComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatButtonModule,
     MatSnackBarModule
   ],
-  providers: [HrService],
+  providers: [HrService, AuthGuardService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor() {
+    
+  }
+}
