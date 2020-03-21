@@ -1,18 +1,35 @@
 <div class="custom-create-hr-form">
-    <form [formGroup]="login" class="example-form">
-      <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input class="example-full-width" formControlName="email" matInput placeholder="Name" />
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Password</mat-label>
-        <input class="example-full-width" type="password" formControlName="password" matInput placeholder="Email" />
-      </mat-form-field>
-      <div class="action-buttons">
-        <ng-container>
-          <button [disabled]="!login.valid" (click)="onLogin()" mat-raised-button color="primary">Login</button>
-        </ng-container>
+  <mat-tab-group>
+    <mat-tab label="Login"> 
+      <form [formGroup]="login">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input class="example-full-width" formControlName="email" matInput type="email" placeholder="Email" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input class="example-full-width" type="password" formControlName="password" matInput placeholder="Password" />
+        </mat-form-field>
+        <div class="action-buttons">
+          <ng-container>
+            <button [disabled]="!login.valid" (click)="onLogin()" mat-raised-button color="primary">Login</button>
+          </ng-container>
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Signup"> Create signup form
+      Only Name, Email and Password area in Signup form
+    </mat-tab>
+    <mat-tab label="Forget Password"> 
+      <div>
+        1. Create forget password tab and fill email<br>
+        2. Create a button names as Generate OTP<br>
+        3. Genrate OTP and shows in console<br>
+        4. After click on Generate OTP open otp form to fill<br>
+        5. aff fill otp, reset password form: New password and Confirm Password<br>
+        // Put all your services inside the <b>auth.service.ts</b>
       </div>
-    </form>
+    </mat-tab>
+  </mat-tab-group>
   </div>
   

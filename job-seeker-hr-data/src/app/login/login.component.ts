@@ -1,6 +1,13 @@
+// Core Module and Services
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+// Extenal Module and Services
+
+
+// Import service
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
   }
@@ -20,11 +27,14 @@ export class LoginComponent implements OnInit {
   });
 
   onLogin() {
-    if(this.login.value.email == "suryanshsrivastava8791@gmail.com" && this.login.value.password == 'Education54#') {
-      sessionStorage.setItem('token','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IlN1cnlhbnNoIFNyaXZhc3RhdmEiLCJpYXQiOjE1MTYyMzkwMjJ9.P4pLbS-3lH6K5Km5TBSFSyUEx6Scr1DwatDSAcrA414')
-      this.router.navigateByUrl('/');
-    } else {
-      sessionStorage.removeItem('token')
+    const email: string = this.login.value.email;
+    const password: string = this.login.value.password;
+    const encodedPassword = window.btoa(password);
+    // Remove pass this when you already decode from create HR component
+    if(email && encodedPassword) {
+      this.auth.checkLogin(email, encodedPassword).subscribe(data => {
+        console.log(data);
+      });
     }
   }
 

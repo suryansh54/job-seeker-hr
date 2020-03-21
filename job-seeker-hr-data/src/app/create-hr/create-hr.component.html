@@ -12,6 +12,19 @@
       <mat-label>Linkedin Profile URL</mat-label>
       <input class="example-full-width" formControlName="linkedinProfileURL" matInput placeholder="Linkedin Profile URL" />
     </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Company</mat-label>
+      <mat-select formControlName="company">
+        <mat-option *ngFor="let comapany of companies" [value]="comapany.name">
+          {{comapany.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="disclaimer">Add company <a routerLink="/add-company">here</a></div>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input class="example-full-width" formControlName="password" type="password" matInput placeholder="Password" />
+    </mat-form-field>
     <div class="action-buttons">
       <ng-container *ngIf="isCreate == false">
         <button mat-raised-button color="primary" (click)="updateHr()" [disabled]="!hr.valid">Update HR</button>

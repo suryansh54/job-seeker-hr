@@ -5,7 +5,7 @@ import { of } from "rxjs";
   providedIn: "root"
 })
 export class HrService {
-  constructor() {}
+  constructor() { }
 
   createHr(data: any) {
     let previousData: Array<any> =
@@ -25,8 +25,8 @@ export class HrService {
     let hrData = JSON.parse(localStorage.getItem("hr-data"));
     if (hrData != null) {
       var removedNullData = hrData.filter(v => {
-        return v != null
-      })
+        return v != null;
+      });
       // console.log(removedNullData)
       return of(removedNullData);
     } else {
@@ -38,7 +38,7 @@ export class HrService {
     let hrData = JSON.parse(localStorage.getItem("hr-data"));
     if (hrData != null) {
       let hrByID = hrData.filter((v, i) => {
-        if(v !== null) {
+        if (v !== null) {
           return v.id == id;
         }
       });
@@ -52,7 +52,7 @@ export class HrService {
     let hrData: Array<any> = JSON.parse(localStorage.getItem("hr-data"));
     if (hrData != null) {
       let deletedHRData = hrData.filter((v, i) => {
-        if(v !== null) {
+        if (v !== null) {
           return v.id != id;
         }
       });
@@ -67,9 +67,9 @@ export class HrService {
     const id = data.id;
     let hrData: Array<any> = JSON.parse(localStorage.getItem("hr-data"));
     if (hrData != null) {
-      for(let i = 0; i < hrData.length; i ++) {
-        if(hrData[i] != null) {
-          if(hrData[i].id == id) {
+      for (let i = 0; i < hrData.length; i++) {
+        if (hrData[i] != null) {
+          if (hrData[i].id == id) {
             delete hrData[i];
           }
         }

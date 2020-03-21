@@ -21,9 +21,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AuthGuardService } from './services/auth-guard.service';
     MatInputModule,
     MatTableModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatTabsModule
   ],
   providers: [HrService, AuthGuardService],
   bootstrap: [AppComponent]

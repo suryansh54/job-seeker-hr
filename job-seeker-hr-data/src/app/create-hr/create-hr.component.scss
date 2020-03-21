@@ -12,3 +12,14 @@
   width: 100%;
   display: block;
 }
+
+.disclaimer {
+  position: relative;
+  top: -22px;
+  font-size: 12px;
+  color: #333;
+  a {
+    font-weight: 600;
+    text-decoration: none;
+  }
+}

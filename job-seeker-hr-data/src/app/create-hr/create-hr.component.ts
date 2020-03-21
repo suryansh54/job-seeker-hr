@@ -12,12 +12,20 @@ import { Router ,ActivatedRoute } from '@angular/router'
 export class CreateHrComponent implements OnInit {
   hrID: string;
   isCreate: boolean;
+  companies: Array<any>;
   constructor(
-    private hrData: HrService, 
+    private hrData: HrService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    private route: ActivatedRoute  
-  ) { }
+    private route: ActivatedRoute
+  ) {
+    this.companies = [
+      { id: 1, name: 'Microsoft' },
+      { id: 2, name: 'Google' },
+      { id: 3, name: 'Harman' },
+      { id: 4, name: 'NEC' }
+    ];
+  }
 
   ngOnInit() {
     this.hrID = this.route.snapshot.paramMap.get('id');
@@ -41,14 +49,17 @@ export class CreateHrComponent implements OnInit {
   hr: FormGroup = new FormGroup({
     name:new FormControl('', [Validators.required]),
     email: new FormControl('', Validators.required),
-    linkedinProfileURL: new FormControl('')
+    linkedinProfileURL: new FormControl(''),
+    company: new FormControl(''),
+    password: new FormControl('')
   });
 
   createHr() {
+    // Decode hr password here
     this.hrData.createHr({...{id: this.uuidv4()}, ...this.hr.value}).subscribe(data => {
       this.openSnackBar(data);
       this.router.navigateByUrl('/');
-    })
+    });
   }
 
   createOrEdit(id) {
