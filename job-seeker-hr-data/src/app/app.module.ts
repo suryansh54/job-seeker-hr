@@ -1,5 +1,7 @@
+// Angular Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,7 @@ import { ListHrComponent } from './list-hr/list-hr.component';
 
 // HR Serives
 import { HrService } from './services/hr.service';
+import { TokenInterceptorService } from './services/token-interceptor.service'; 
 
 // Mat Modules
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -46,9 +49,14 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatButtonModule,
     MatSnackBarModule,
     MatSelectModule,
-    MatTabsModule
+    MatTabsModule,
+    HttpClientModule
   ],
-  providers: [HrService, AuthGuardService],
+  providers: [
+    HrService, 
+    AuthGuardService,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

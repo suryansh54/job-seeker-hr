@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { of } from "rxjs";
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: "root"
 })
 export class HrService {
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   createHr(data: any) {
     let previousData: Array<any> =
@@ -80,5 +81,9 @@ export class HrService {
     } else {
       return of("Data removed");
     }
+  }
+
+  serverCall() {
+    return this.http.get('http://dummy.restapiexample.com/api/v1/employees');
   }
 }

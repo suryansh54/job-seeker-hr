@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HrService } from '../services/hr.service';
+import { HrService } from '@service/hr.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -26,6 +26,7 @@ export class ListHrComponent implements OnInit {
 
   ngOnInit() {
     this.hrList();
+    this.serverCall();
   }
 
   openSnackBar(message: string, duration: number = 3000) {
@@ -52,4 +53,9 @@ export class ListHrComponent implements OnInit {
     this.router.navigateByUrl('/edit-hr/'+id);
   }
 
+  serverCall() {
+    this.hrData.serverCall().subscribe(data => {
+      console.log(data);
+    });
+  }
 }
